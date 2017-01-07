@@ -32,9 +32,8 @@ public class ImageAdapter extends BaseAdapter {
         if (convertView == null) {
             // if it's not recycled, initialize some attributes
             imageView = new ImageView(mContext);
-            imageView.setLayoutParams(new GridView.LayoutParams(85, 85));
-            imageView.setScaleType(ImageView.ScaleType.CENTER_CROP);
-            imageView.setPadding(8, 8, 8, 8);
+            imageView.setLayoutParams(new GridView.LayoutParams(200, 200));
+            imageView.setPadding(10, 10, 10, 10);
         } else {
             imageView = (ImageView) convertView;
         }
@@ -48,6 +47,9 @@ public class ImageAdapter extends BaseAdapter {
             R.drawable.aloo_paratha, R.drawable.bread_pakora,
             R.drawable.burger, R.drawable.cheese_sandwich,
             R.drawable.chole_bhature, R.drawable.chole_kulche,
-            R.drawable.idli_sambar
+            R.drawable.idli_sambar, R.drawable.khamand,
+            R.drawable.masala_dosa, R.drawable.paneer_paratha,
+            R.drawable.pav_bhaji, R.drawable.cheese_sandwich,
+            R.drawable.pizza
     };
 }
