@@ -5,7 +5,7 @@
     android:layout_height="match_parent">
 
     <FrameLayout
-        android:id="@+id/middle_frame"
+        android:id="@+id/container"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content">
 
@@ -18,24 +18,24 @@
         android:layout_height="wrap_content">
 
         <Button
+            android:id="@+id/home"
             android:text="@string/home_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/menu"
             android:layout_weight="1" />
 
         <Button
+            android:id="@+id/plate"
             android:text="@string/plate_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/cart"
             android:layout_weight="1" />
 
         <Button
+            android:id="@+id/profile"
             android:text="@string/profile_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/profile"
             android:layout_weight="1" />
     </LinearLayout>
 
