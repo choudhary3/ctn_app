@@ -15,7 +15,26 @@
         android:layout_alignParentBottom="true"
         android:layout_alignParentLeft="true"
         android:text="@string/home_text"
-        android:layout_width="40dp"
-        android:layout_height="100dp" />
+        android:layout_margin="0dp"
+        android:layout_width="@dimen/screen_button_width"
+        android:layout_height="wrap_content" />
+
+    <Button
+        android:id="@+id/plate"
+        android:layout_alignParentBottom="true"
+        android:layout_toRightOf="@+id/home"
+        android:text="@string/plate_text"
+        android:layout_margin="0dp"
+        android:layout_width="@dimen/screen_button_width"
+        android:layout_height="wrap_content" />
+
+    <Button
+        android:id="@+id/profile"
+        android:layout_alignParentBottom="true"
+        android:layout_toRightOf="@+id/plate"
+        android:text="@string/profile_text"
+        android:layout_margin="0dp"
+        android:layout_width="@dimen/screen_button_width"
+        android:layout_height="wrap_content" />
 
 </RelativeLayout>
