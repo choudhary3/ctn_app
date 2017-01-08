@@ -26,6 +26,7 @@
             android:text="@string/home_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:onClick="homeButton"
             android:layout_weight="1" />
 
         <Button
@@ -33,6 +34,7 @@
             android:text="@string/plate_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:onClick="plateButton"
             android:layout_weight="1" />
 
         <Button
@@ -40,6 +42,7 @@
             android:text="@string/profile_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:onClick="profileButton"
             android:layout_weight="1" />
     </LinearLayout>
 
