@@ -1,4 +1,4 @@
-package com.test.ctn;
+package com.test.ctn.items;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -9,11 +9,12 @@ import android.widget.AdapterView;
 import android.widget.GridView;
 import android.widget.Toast;
 
-public class Items extends Fragment {
+import com.test.ctn.R;
+
+public class ItemsFragment extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-
         View view = inflater.inflate(R.layout.fragment_items, container, false);
 
         GridView gridview = (GridView) view.findViewById(R.id.gridview);
@@ -26,7 +27,6 @@ public class Items extends Fragment {
                         Toast.LENGTH_SHORT).show();
             }
         });
-
         return view;
     }
 }
