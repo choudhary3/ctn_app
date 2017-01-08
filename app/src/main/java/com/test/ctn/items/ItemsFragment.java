@@ -1,5 +1,6 @@
 package com.test.ctn.items;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -17,7 +18,7 @@ public class ItemsFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_items, container, false);
 
-        GridView gridview = (GridView) view.findViewById(R.id.gridview);
+        final GridView gridview = (GridView) view.findViewById(R.id.gridview);
 
         StorageClass foodStorage = new StorageClass();
 
@@ -29,6 +30,13 @@ public class ItemsFragment extends Fragment {
                                     int position, long id) {
                 Toast.makeText(getContext(), "" + position,
                         Toast.LENGTH_SHORT).show();
+                FoodDetails food = (FoodDetails) gridview.getItemAtPosition(position);
+                Intent activity = new Intent(getContext(),SelectedFood.class);
+
+                Bundle bundle = new Bundle();
+
+                activity.putExtra("myObject", food);
+                startActivity(activity);
             }
         });
         return view;

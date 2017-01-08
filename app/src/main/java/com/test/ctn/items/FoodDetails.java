@@ -1,6 +1,7 @@
 package com.test.ctn.items;
+import java.io.Serializable;
 
-public class FoodDetails {
+public class FoodDetails implements Serializable{
     private int price;
     private String foodName;
     private int foodImage;
