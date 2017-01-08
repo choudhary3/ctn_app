@@ -18,7 +18,11 @@ public class ItemsFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_items, container, false);
 
         GridView gridview = (GridView) view.findViewById(R.id.gridview);
-        gridview.setAdapter(new ImageAdapter(getContext()));
+
+        StorageClass foodStorage = new StorageClass();
+
+
+        gridview.setAdapter(new FoodAdapter(getContext(),foodStorage.getData()));
 
         gridview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             public void onItemClick(AdapterView<?> parent, View v,
