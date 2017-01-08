@@ -11,9 +11,9 @@ public class MainScreen extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_screen);
 
-        Items items = new Items();
+        ItemsFragment itemsFragment = new ItemsFragment();
         FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
-        ft.add(R.id.container, items);
+        ft.add(R.id.container, itemsFragment);
         ft.commit();
 
     }
