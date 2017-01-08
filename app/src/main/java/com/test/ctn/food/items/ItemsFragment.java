@@ -1,4 +1,4 @@
-package com.test.ctn;
+package com.test.ctn.food.items;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -8,6 +8,8 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.GridView;
 import android.widget.Toast;
+
+import com.test.ctn.R;
 
 public class ItemsFragment extends Fragment {
 

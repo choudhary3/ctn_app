@@ -1,4 +1,4 @@
-package com.test.ctn;
+package com.test.ctn.food.items;
 
 import android.content.Context;
 import android.view.View;
@@ -6,6 +6,8 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.GridView;
 import android.widget.ImageView;
+
+import com.test.ctn.R;
 
 public class ImageAdapter extends BaseAdapter {
     private Context mContext;
