@@ -1,11 +1,14 @@
 package com.test.ctn;
 
 import android.graphics.Color;
+import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
+import android.support.v4.app.Fragment;
 import android.widget.Button;
 
 import com.test.ctn.items.*;
@@ -13,11 +16,8 @@ import com.test.ctn.plate.*;
 import com.test.ctn.profile.*;
 
 public class MainScreen extends AppCompatActivity {
-    //Button buttonHome = (Button) findViewById(R.id.home);
-    //Button buttonPlate = (Button) findViewById(R.id.home);
-    //Button buttonProfile = (Button) findViewById(R.id.home);
-    int present =0;
-    int back=0;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         System.out.println("In on create fn");
@@ -26,63 +26,100 @@ public class MainScreen extends AppCompatActivity {
 
         ItemsFragment itemsFragment = new ItemsFragment();
         FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
-        ft.replace(R.id.container, itemsFragment);
+        ft.replace(R.id.container, itemsFragment,"Main_Menu");
         System.out.println("added fragment");
-        present=1;
-        back=0;
         ft.commit();
+        Log.i("fragchecking ",Integer.toString(getFragmentManager().getBackStackEntryCount()));
     }
+
+
+    /*
+    *  handling the back press button
+    *  below
+     */
+
 
     @Override
     public void onBackPressed() {
-        super.onBackPressed();
-        if(back==1){
-            present=1;
+        Fragment checking = getSupportFragmentManager().findFragmentByTag("Main_Menu");
+        if (checking!=null && checking.isVisible()){
+            super.onBackPressed();
         }
+        else {
+            ItemsFragment itemsFragment = new ItemsFragment();
+            FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
+            ft.replace(R.id.container, itemsFragment,"Main_Menu");
+            FragmentManager fm = getSupportFragmentManager();
+
+
+            fm.popBackStack();
+            ft.commit();
+            Log.i("fragchecking ",Integer.toString(getFragmentManager().getBackStackEntryCount()));
+
+        }
+
+       // super.onBackPressed();
     }
 
     public void homeButton(View view) {
         //buttonHome.setTextColor(Color.parseColor("#0000ff"));
-        if(present!=1) {
+
+        Fragment checking = getSupportFragmentManager().findFragmentByTag("Main_Menu");
+        if (checking==null || !checking.isVisible()){
             ItemsFragment itemsFragment = new ItemsFragment();
             FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
-            ft.replace(R.id.container, itemsFragment);
+            ft.replace(R.id.container, itemsFragment,"Main_Menu");
             FragmentManager fm = getSupportFragmentManager();
-            fm.popBackStack();
+
+            /*
+
+            checking the pop buttomns
+            */
+
+            //ft.addToBackStack("Main_Menu");
             ft.commit();
-            present=1;
+            Log.i("fragchecking ",Integer.toString(getFragmentManager().getBackStackEntryCount()));
         }
+
+
     }
+
     public void plateButton(View view) {
-        if(present!=2) {
-            FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
-            PlateFragment plateFragment = new PlateFragment();
-            ft.replace(R.id.container, plateFragment);
-            if (present == 1) {
-                ft.addToBackStack(null);
-                back = 1;
-            } else {
-                FragmentManager fm = getSupportFragmentManager();
-                fm.popBackStackImmediate();
-            }
-            present = 2;
-            ft.commit();
-        }
+
+        FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
+        PlateFragment plateFragment = new PlateFragment();
+        ft.replace(R.id.container, plateFragment);
+
+        /*
+
+        checking the pop buttomns
+         */
+        FragmentManager fm = getSupportFragmentManager();
+        fm.popBackStack();
+        ft.commit();
+        Log.i("fragchecking ",Integer.toString(getFragmentManager().getBackStackEntryCount()));
+
     }
+
+
+
     public void profileButton(View view) {
-        if(present!=3) {
-            ProfileFragment profileFragment = new ProfileFragment();
-            FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
-            ft.replace(R.id.container, profileFragment);
-            if (present == 1) {
-                ft.addToBackStack(null);
-                back = 1;
-            } else {
-                FragmentManager fm = getSupportFragmentManager();
-                fm.popBackStackImmediate();
-            }
-            present = 3;
-            ft.commit();
-        }
+
+        ProfileFragment profileFragment = new ProfileFragment();
+        FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
+        ft.replace(R.id.container, profileFragment);
+
+        /*
+
+        checking the pop buttomns
+         */
+
+        FragmentManager fm = getSupportFragmentManager();
+        fm.popBackStack();
+        ft.commit();
+
+        Log.i("fragchecking ",Integer.toString(getFragmentManager().getBackStackEntryCount()));
+
     }
+
 }
