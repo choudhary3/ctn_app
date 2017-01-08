@@ -3,7 +3,7 @@ package com.test.ctn;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
-public class login extends AppCompatActivity {
+public class Login extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
