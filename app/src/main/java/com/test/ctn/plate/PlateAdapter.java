@@ -1,4 +1,4 @@
-package com.test.ctn.fooditems.menuUi;
+package com.test.ctn.plate;
 
 import android.content.Context;
 import android.support.annotation.NonNull;
@@ -15,12 +15,11 @@ import com.test.ctn.fooditems.fooddata.FoodDetails;
 import java.util.ArrayList;
 
 /**
- * Created by rajat on 08-01-2017.
+ * Created by rajat on 10-01-2017.
  */
 
-public class FoodAdapter extends ArrayAdapter<FoodDetails> {
-
-    public FoodAdapter (Context context,ArrayList<FoodDetails> storage){
+public class PlateAdapter extends ArrayAdapter<FoodDetails> {
+    public PlateAdapter (Context context, ArrayList<FoodDetails> storage){
         super(context,0,storage);
     }
 
@@ -29,18 +28,16 @@ public class FoodAdapter extends ArrayAdapter<FoodDetails> {
     public View getView(int position, View convertView, ViewGroup parent) {
         if (convertView==null){
             LayoutInflater customInflater = LayoutInflater.from(getContext());
-            convertView = customInflater.inflate(R.layout.menu_food_item,parent,false);
+            convertView = customInflater.inflate(R.layout.plate_list_layout,parent,false);
         }
-
         FoodDetails foodItem = getItem(position);
-
-        ImageView ifoodimage = (ImageView) convertView.findViewById(R.id.foodimage);
-        TextView ifoodName = (TextView) convertView.findViewById(R.id.foodname);
-        TextView ifoodPrice = (TextView) convertView.findViewById(R.id.foodprice);
+        ImageView ifoodimage = (ImageView) convertView.findViewById(R.id.listimage);
+        TextView ifoodName = (TextView) convertView.findViewById(R.id.listname);
+        TextView ifoodItems = (TextView) convertView.findViewById(R.id.listitem);
 
         ifoodimage.setImageResource(foodItem.getFoodImage());
         ifoodName.setText(foodItem.getFoodName());
-        ifoodPrice.setText(Integer.toString(foodItem.getPrice()));
+        ifoodItems.setText(Integer.toString(foodItem.getFoodQuantity()));
 
         return convertView;
     }

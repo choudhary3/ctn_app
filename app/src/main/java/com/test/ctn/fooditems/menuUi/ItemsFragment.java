@@ -3,6 +3,7 @@ package com.test.ctn.fooditems.menuUi;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,7 +20,7 @@ public class ItemsFragment extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_items, container, false);
+        View view = inflater.inflate(R.layout.fragment_food_menu, container, false);
 
         final GridView gridview = (GridView) view.findViewById(R.id.gridview);
 
@@ -31,14 +32,21 @@ public class ItemsFragment extends Fragment {
         gridview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             public void onItemClick(AdapterView<?> parent, View v,
                                     int position, long id) {
+
+
                 Toast.makeText(getContext(), "" + position,
                         Toast.LENGTH_SHORT).show();
+
+
+
+
                 FoodDetails food = (FoodDetails) gridview.getItemAtPosition(position);
                 Intent activity = new Intent(getContext(),SelectedFood.class);
 
                // Bundle bundle = new Bundle();
 
                 activity.putExtra("myObject", food);
+
                 startActivity(activity);
             }
         });
