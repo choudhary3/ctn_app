@@ -22,7 +22,7 @@ public class PlateFragment extends Fragment {
         final ListView listview = (ListView) view.findViewById(R.id.custom_ListView);
 
 
-        listview.setAdapter(new PlateAdapter(getContext(),new StorageClass().getData()));
+        listview.setAdapter(new PlateAdapter(getContext(),new StorageClass().getFoodCart()));
 
 
         /*listview.setOnItemClickListener(new AdapterView.OnItemClickListener() {

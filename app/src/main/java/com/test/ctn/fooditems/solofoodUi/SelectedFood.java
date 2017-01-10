@@ -5,13 +5,17 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.test.ctn.MainScreen;
 import com.test.ctn.R;
 import com.test.ctn.fooditems.fooddata.FoodDetails;
 import com.test.ctn.fooditems.fooddata.StorageClass;
+
+import java.util.ArrayList;
 
 
 public class SelectedFood extends AppCompatActivity {
@@ -19,6 +23,7 @@ public class SelectedFood extends AppCompatActivity {
     private StorageClass foodData;
     private int index;
     private TextView foodQuantity;
+    private int dummyQuantity;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,44 +33,112 @@ public class SelectedFood extends AppCompatActivity {
         Intent dataRetrieve = getIntent();
         FoodDetails specificFood = (FoodDetails) dataRetrieve.getSerializableExtra("myObject");
 
+        dummyQuantity = 1;  // varaible to store the Quantity Displayed ...
+
         foodData = new StorageClass();  // giving memory to storageClass object ;
         try {
             index = searchForFood(specificFood);
             if (index >= 0){
+                /*
+                Food Related Details Below ...
+                 */
+
                 ImageView foodImage = (ImageView) findViewById(R.id.selectedimage);
                 TextView foodName = (TextView) findViewById(R.id.selectedfood);
                 TextView foodPrice = (TextView) findViewById(R.id.selectedprice);
+
+                foodImage.setImageResource(foodData.getCatalogData().get(index).getFoodImage());
+                foodName.setText(foodData.getCatalogData().get(index).getFoodName());
+                foodPrice.setText(Integer.toString(foodData.getCatalogData().get(index).getPrice()));
+
+                /*
+                Food Related Details Above ...
+                 */
+
+                /*
+                 Quantity Related Buttons below ...
+                 */
                 foodQuantity = (TextView) findViewById(R.id.selectednoofitems);
-                foodImage.setImageResource(foodData.getData().get(index).getFoodImage());
-                foodName.setText(foodData.getData().get(index).getFoodName());
-                foodPrice.setText(Integer.toString(foodData.getData().get(index).getPrice()));
+                foodQuantity.setText(Integer.toString(dummyQuantity));
 
-
-                System.out.println("Image set");
-
-                foodQuantity.setText(Integer.toString(foodData.getData().get(index).getFoodQuantity()));
-                //System.out.println("Image set");
+                /*
+                Quantity Related Buttons Above ...
+                 */
             }
             else {
                 throw new IllegalArgumentException("SELECTED_FOOD_NOT_IN_DATA");
             }
-
         }
         catch (IllegalArgumentException e){
             e.getMessage();
-           // Toast.makeText(this," selected not Found ",Toast.LENGTH_SHORT).show();
         }
 
 
     }
-    public void addbyone(View v){
-        foodData.getData().get(index).incFoodQuantity();
-        foodQuantity.setText(Integer.toString(foodData.getData().get(index).getFoodQuantity()));
+
+    public void increaseQuantity(View view){
+        dummyQuantity++;
+        foodQuantity.setText(Integer.toString(dummyQuantity));
+    }
+    public void decreaseQuantity(View view){
+        if (dummyQuantity>1){
+
+            foodQuantity.setText(Integer.toString(dummyQuantity));
+        }
+        else {
+            Toast.makeText(this,"Quantity atleast be one",Toast.LENGTH_SHORT).show();
+        }
     }
 
+    /*
+    Invoked Add to Cart button is Pressed and Then It Returns to Main Dispaly and
+    Showing The Items Added In Cart ...
+     */
+    public void addToCart(View view){
+        Intent intent = new Intent(this,MainScreen.class);
+        if (isContain(foodData.getFoodCart())){
+            Log.i("ERROR","CONATINS ");
+
+            if (foodQuantity.getText().toString().equals(Integer.toString(foodData.getCatalogData().get(index).getFoodQuantity()))){
+                Toast.makeText(this,"Food is Already In cart",Toast.LENGTH_SHORT).show();
+            }
+            else {
+                foodData.getCatalogData().get(index).setFoodQuantity(dummyQuantity);
+                intent.putExtra("From","SelectedFood");
+                intent.putExtra("My_Object",foodData.getCatalogData().get(index));
+                startActivity(intent);
+            }
+        }
+        else {
+            foodData.getCatalogData().get(index).setFoodQuantity(dummyQuantity);
+            foodData.getFoodCart().add(foodData.getCatalogData().get(index));
+
+            intent.putExtra("From","SelectedFood");
+            intent.putExtra("My_Object",foodData.getCatalogData().get(index));
+            startActivity(intent);
+        }
+    }
+    /*
+    Method to check Whether Food is Already In Food Cart Or Not ...
+     */
+    private boolean isContain(ArrayList<FoodDetails> checker){
+        Log.i("SIZE",Integer.toString(checker.size()));
+        for (int i=0;i<checker.size();i++){
+            if (foodData.getCatalogData().get(index).getFoodName().equals(checker.get(i).getFoodName())){
+                return true;
+            }
+        }
+        return false;
+    }
+
+
+    /*
+    Below Method finds the Selected Food By Using The Linear Search Algorithm ...
+     */
+
     private int searchForFood(FoodDetails specificFood){
-        for (int i=0;i<=foodData.getData().size();i++){
-            if (specificFood.getFoodName().equals(foodData.getData().get(i).getFoodName())){
+        for (int i=0;i<foodData.getCatalogData().size();i++){
+            if (specificFood.getFoodName().equals(foodData.getCatalogData().get(i).getFoodName())){
                 return i;
             }
         }

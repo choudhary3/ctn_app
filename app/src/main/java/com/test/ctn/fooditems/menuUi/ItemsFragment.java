@@ -27,19 +27,11 @@ public class ItemsFragment extends Fragment {
         StorageClass foodStorage = new StorageClass();
 
 
-        gridview.setAdapter(new FoodAdapter(getContext(),foodStorage.getData()));
+        gridview.setAdapter(new FoodAdapter(getContext(),foodStorage.getCatalogData()));
 
         gridview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             public void onItemClick(AdapterView<?> parent, View v,
                                     int position, long id) {
-
-
-                Toast.makeText(getContext(), "" + position,
-                        Toast.LENGTH_SHORT).show();
-
-
-
-
                 FoodDetails food = (FoodDetails) gridview.getItemAtPosition(position);
                 Intent activity = new Intent(getContext(),SelectedFood.class);
 
