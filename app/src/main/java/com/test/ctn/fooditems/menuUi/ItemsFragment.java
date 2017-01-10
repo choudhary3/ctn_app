@@ -1,4 +1,4 @@
-package com.test.ctn.items;
+package com.test.ctn.fooditems.menuUi;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -11,6 +11,9 @@ import android.widget.GridView;
 import android.widget.Toast;
 
 import com.test.ctn.R;
+import com.test.ctn.fooditems.solofoodUi.SelectedFood;
+import com.test.ctn.fooditems.fooddata.FoodDetails;
+import com.test.ctn.fooditems.fooddata.StorageClass;
 
 public class ItemsFragment extends Fragment {
 
@@ -33,7 +36,7 @@ public class ItemsFragment extends Fragment {
                 FoodDetails food = (FoodDetails) gridview.getItemAtPosition(position);
                 Intent activity = new Intent(getContext(),SelectedFood.class);
 
-                Bundle bundle = new Bundle();
+               // Bundle bundle = new Bundle();
 
                 activity.putExtra("myObject", food);
                 startActivity(activity);

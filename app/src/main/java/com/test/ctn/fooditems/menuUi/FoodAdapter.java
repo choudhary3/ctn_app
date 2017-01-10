@@ -1,4 +1,4 @@
-package com.test.ctn.items;
+package com.test.ctn.fooditems.menuUi;
 
 import android.content.Context;
 import android.support.annotation.NonNull;
@@ -10,6 +10,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.test.ctn.R;
+import com.test.ctn.fooditems.fooddata.FoodDetails;
 
 import java.util.ArrayList;
 

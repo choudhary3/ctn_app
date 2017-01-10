@@ -1,4 +1,4 @@
-package com.test.ctn.items;
+package com.test.ctn.fooditems.fooddata;
 import java.io.Serializable;
 
 public class FoodDetails implements Serializable{

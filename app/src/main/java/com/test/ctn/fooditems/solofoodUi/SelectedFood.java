@@ -1,4 +1,4 @@
-package com.test.ctn.items;
+package com.test.ctn.fooditems.solofoodUi;
 
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
@@ -7,6 +7,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.test.ctn.R;
+import com.test.ctn.fooditems.fooddata.FoodDetails;
 
 public class SelectedFood extends AppCompatActivity {
 

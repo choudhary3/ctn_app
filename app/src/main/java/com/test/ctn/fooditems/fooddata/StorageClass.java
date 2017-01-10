@@ -1,4 +1,4 @@
-package com.test.ctn.items;
+package com.test.ctn.fooditems.fooddata;
 
 import com.test.ctn.R;
 
@@ -10,13 +10,13 @@ import java.util.ArrayList;
 
 public class StorageClass {
 
+    private static ArrayList<FoodDetails> foodItems = new ArrayList<>();
+
     public StorageClass(){
 
     }
 
-    public ArrayList<FoodDetails> getData(){
-        ArrayList<FoodDetails> foodItems = new ArrayList<>();
-
+    public void setData(){
         foodItems.add(new FoodDetails(100,"Burger", R.drawable.burger));
         foodItems.add(new FoodDetails(100,"Vada Pav", R.drawable.vada_pav));
         foodItems.add(new FoodDetails(100,"Aloo Paratha", R.drawable.aloo_paratha));
@@ -37,7 +37,9 @@ public class StorageClass {
         foodItems.add(new FoodDetails(100,"Veg. Sandwich", R.drawable.veg_sandwich));
         foodItems.add(new FoodDetails(100,"White pasta", R.drawable.white_pasta));
 
+    }
 
+    public ArrayList<FoodDetails> getData(){
         return foodItems;
     }
 
