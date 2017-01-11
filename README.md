@@ -1,4 +1,4 @@
-# Wake'n Bake 
+# MidNight_Order 
 An Android Application to cater the problems of Hostel Canteen Transactions by letting the students To buy the available Food through App and Payment can be made at the counter.
 
 ## Getting Started 
