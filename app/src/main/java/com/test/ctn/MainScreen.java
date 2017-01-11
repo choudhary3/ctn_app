@@ -34,15 +34,11 @@ public class MainScreen extends AppCompatActivity {
         else {
             /*
         setting data on creation of app
-        */
-            foodStorage.setCatalogData();
-        /*
-        setting data on creation of app
-        */
+        */  foodStorage.setCatalogData();      //setting the data
+
             View view = findViewById(R.id.home);
             homeButton(view);
         }
-
         backPressed = false;
     }
 
@@ -92,7 +88,7 @@ public class MainScreen extends AppCompatActivity {
             ItemsFragment itemsFragment = new ItemsFragment();
             FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
             ft.replace(R.id.container, itemsFragment,"Main_Menu");
-
+            ft.commit();
             /*
             checking the pop buttomns
             */
@@ -100,7 +96,7 @@ public class MainScreen extends AppCompatActivity {
             //ft.addToBackStack("Main_Menu");
 
             //getSupportFragmentManager().popBackStack();
-            ft.commit();
+
             Log.i("fragchecking ",Integer.toString(getFragmentManager().getBackStackEntryCount()));
         }
     }

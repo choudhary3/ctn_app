@@ -82,7 +82,7 @@ public class SelectedFood extends AppCompatActivity {
     }
     public void decreaseQuantity(View view){
         if (dummyQuantity>1){
-
+            dummyQuantity--;
             foodQuantity.setText(Integer.toString(dummyQuantity));
         }
         else {
@@ -105,7 +105,8 @@ public class SelectedFood extends AppCompatActivity {
             else {
                 foodData.getCatalogData().get(index).setFoodQuantity(dummyQuantity);
                 intent.putExtra("From","SelectedFood");
-                intent.putExtra("My_Object",foodData.getCatalogData().get(index));
+
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 startActivity(intent);
             }
         }
@@ -114,7 +115,8 @@ public class SelectedFood extends AppCompatActivity {
             foodData.getFoodCart().add(foodData.getCatalogData().get(index));
 
             intent.putExtra("From","SelectedFood");
-            intent.putExtra("My_Object",foodData.getCatalogData().get(index));
+
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
             startActivity(intent);
         }
     }

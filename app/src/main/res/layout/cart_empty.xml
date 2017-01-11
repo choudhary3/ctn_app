@@ -15,5 +15,13 @@
         app:elevation="0dp"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        app:backgroundTint="@android:color/holo_orange_light" />
+        app:backgroundTint="@android:color/holo_purple" />
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:srcCompat="@android:drawable/ic_delete"
+        android:id="@+id/imageView"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true" />
 </RelativeLayout>
