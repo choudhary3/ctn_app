@@ -4,7 +4,6 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/CTN.iml" filepath="$PROJECT_DIR$/CTN.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
-      <module fileurl="file://$PROJECT_DIR$/ctn_app.iml" filepath="$PROJECT_DIR$/ctn_app.iml" />
     </modules>
   </component>
 </project>
