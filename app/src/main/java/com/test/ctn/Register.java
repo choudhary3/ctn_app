@@ -12,7 +12,6 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import java.io.BufferedReader;
@@ -20,17 +19,13 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
-public class Login extends AppCompatActivity {
+public class Register extends AppCompatActivity {
+    private EditText name;
     private EditText username;
     private EditText password;
+    private Button register;
 
-    public static final String MESSAGE = "MESSAGE";
-    private static final String LOGIN_URL = "http://pcpradeep22.16mb.com/login.php";
-
-    String usernameS;
-    String passwordS;
-
-    private Intent intentLogin;
+    private static final String REGISTER_URL = "http://pcpradeep22.16mb.com/register.php";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,59 +34,31 @@ public class Login extends AppCompatActivity {
         ActionBar actionBar = getSupportActionBar();
         actionBar.hide();
 
-        setContentView(R.layout.activity_login);
+        setContentView(R.layout.activity_register);
+
+        name = (EditText) findViewById(R.id.name);
         username = (EditText) findViewById(R.id.username);
         password = (EditText) findViewById(R.id.password);
-        Button login = (Button) findViewById(R.id.login);
-        intentLogin = new Intent(this, MainScreen.class);
+        register = (Button) findViewById(R.id.registerButton);
 
-        username.setOnClickListener(
+        name.setOnClickListener(
                 new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        username.setCursorVisible(true);
+                        name.setCursorVisible(true);
                     }
                 }
         );
-
-        login.setOnClickListener(
-                new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        if (isNetworkAvailable()) {
-                            usernameS = username.getText().toString().trim().toLowerCase();
-                            passwordS = password.getText().toString();
-
-                            for (int i = 0; i < usernameS.length(); i++) {
-                                if (usernameS.charAt(i) == ' ') {
-                                    Toast.makeText(getBaseContext(), "Username cannot contain any space!", Toast.LENGTH_SHORT).show();
-                                    return;
-                                }
-                            }
-
-                            for (int i = 0; i < passwordS.length(); i++) {
-                                if (passwordS.charAt(i) == ' ') {
-                                    Toast.makeText(getBaseContext(), "Password cannot contain any space!", Toast.LENGTH_SHORT).show();
-                                    return;
-                                }
-                            }
-
-                            loginUser(usernameS, passwordS);
-                        } else {
-                            Toast.makeText(getBaseContext(), "No internet Bitch!", Toast.LENGTH_SHORT).show();
-                        }
-                    }
-                }
-        );
-
-        TextView register = (TextView) findViewById(R.id.register);
-        final Intent intentRegister = new Intent(this, Register.class);
 
         register.setOnClickListener(
                 new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        startActivity(intentRegister);
+                        if (isNetworkAvailable()) {
+                            registerUser();
+                        } else {
+                            Toast.makeText(getBaseContext(), "No internet Bitch!", Toast.LENGTH_SHORT).show();
+                        }
                     }
                 }
         );
@@ -104,28 +71,55 @@ public class Login extends AppCompatActivity {
         return activeNetworkInfo != null && activeNetworkInfo.isConnected();
     }
 
-    private void loginUser(String username, String password) {
-        String urlSuffix = "?username=" + username + "&password=" + password;
-        class LoginUser extends AsyncTask<String, Void, String> {
+    private void registerUser() {
+        String nameS = name.getText().toString().trim().toLowerCase();
+        String usernameS = username.getText().toString().trim().toLowerCase();
+        String passwordS = password.getText().toString();
+
+        for (int i = 0; i < nameS.length(); i++) {
+            if (nameS.charAt(i) == ' ') {
+                Toast.makeText(this, "I only require your first name!", Toast.LENGTH_SHORT).show();
+                return;
+            }
+        }
+
+        for (int i = 0; i < usernameS.length(); i++) {
+            if (usernameS.charAt(i) == ' ') {
+                Toast.makeText(this, "Username cannot contain any space!", Toast.LENGTH_SHORT).show();
+                return;
+            }
+        }
+
+        for (int i = 0; i < passwordS.length(); i++) {
+            if (passwordS.charAt(i) == ' ') {
+                Toast.makeText(this, "Password cannot contain any space!", Toast.LENGTH_SHORT).show();
+                return;
+            }
+        }
+
+        register(nameS, usernameS, passwordS);
+    }
+
+    private void register(String name, String username, String password) {
+        String urlSuffix = "?name=" + name + "&username=" + username + "&password=" + password;
+        class RegisterUser extends AsyncTask<String, Void, String> {
 
             ProgressDialog loading;
 
             @Override
             protected void onPreExecute() {
                 super.onPreExecute();
-                loading = ProgressDialog.show(Login.this, "Please Wait", null, true, true);
+                loading = ProgressDialog.show(Register.this, "Please Wait", null, true, true);
             }
 
             @Override
             protected void onPostExecute(String s) {
                 super.onPostExecute(s);
                 loading.dismiss();
-                if (s.startsWith("Welcome")) {
-                    intentLogin.putExtra("From", "LoginPage");
-                    Toast.makeText(getBaseContext(), "Success!", Toast.LENGTH_SHORT).show();
-                    startActivity(intentLogin);
-                } else {
-                    Toast.makeText(getBaseContext(), s, Toast.LENGTH_SHORT).show();
+                Toast.makeText(getBaseContext(), s, Toast.LENGTH_SHORT).show();
+                if (s.equalsIgnoreCase("successfully registered!!")) {
+                    Intent intent = new Intent(Register.this, Login.class);
+                    startActivity(intent);
                 }
             }
 
@@ -134,7 +128,7 @@ public class Login extends AppCompatActivity {
                 String s = params[0];
                 BufferedReader bufferedReader = null;
                 try {
-                    URL url = new URL(LOGIN_URL + s);
+                    URL url = new URL(REGISTER_URL + s);
                     HttpURLConnection con = (HttpURLConnection) url.openConnection();
                     bufferedReader = new BufferedReader(new InputStreamReader(con.getInputStream()));
 
@@ -149,8 +143,8 @@ public class Login extends AppCompatActivity {
             }
         }
 
-        LoginUser lu = new LoginUser();
-        lu.execute(urlSuffix);
+        RegisterUser ru = new RegisterUser();
+        ru.execute(urlSuffix);
     }
 
 }
