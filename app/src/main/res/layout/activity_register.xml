@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/activity_login"
+    android:id="@+id/activity_register"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/colorPrimary"
@@ -9,16 +9,36 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="com.test.ctn.Login">
+    tools:context="com.test.ctn.Register">
 
     <EditText
-        android:id="@+id/username"
+        android:id="@+id/name"
         android:layout_width="300dp"
         android:layout_height="40dp"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="100dp"
         android:background="@drawable/input_layout"
         android:cursorVisible="false"
+        android:hint="@string/name_text"
+        android:imeOptions="actionNext"
+        android:inputType="text"
+        android:maxLines="1"
+        android:paddingLeft="40dp"
+        android:paddingRight="10dp"
+        android:textColor="@color/black"
+        android:textColorHint="@color/colorGray"
+        android:textCursorDrawable="@color/black"
+        android:textSize="20dp" />
+
+    <EditText
+        android:id="@+id/username"
+        android:layout_width="300dp"
+        android:layout_height="40dp"
+        android:layout_below="@+id/name"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/input_layout"
+        android:cursorVisible="true"
         android:hint="@string/username_text"
         android:imeOptions="actionNext"
         android:inputType="text"
@@ -50,48 +70,16 @@
         android:textCursorDrawable="@color/black"
         android:textSize="20dp" />
 
-    <TextView
-        android:id="@+id/forgot"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/password"
-        android:layout_marginLeft="40dp"
-        android:layout_marginTop="10dp"
-        android:text="@string/forgot_text"
-        android:textColor="@color/colorCyan" />
-
     <Button
-        android:id="@+id/login"
+        android:id="@+id/registerButton"
         android:layout_width="300dp"
         android:layout_height="40dp"
-        android:layout_below="@+id/forgot"
+        android:layout_below="@+id/password"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="10dp"
-        android:background="@drawable/button_layout"
-        android:text="@string/login_text"
-        android:textColor="@color/colorCyan"
-        android:textSize="20dp" />
-
-    <TextView
-        android:id="@+id/account"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/login"
-        android:layout_marginLeft="40dp"
         android:layout_marginTop="40dp"
-        android:text="@string/account_text"
-        android:textColor="@color/colorCyan" />
-
-    <TextView
-        android:id="@+id/register"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/login"
-        android:layout_marginLeft="5dp"
-        android:layout_marginTop="35dp"
-        android:layout_toRightOf="@+id/account"
+        android:background="@drawable/button_layout"
         android:text="@string/register_text"
-        android:textColor="@color/colorGreen"
+        android:textColor="@color/colorCyan"
         android:textSize="20dp" />
 
 </RelativeLayout>

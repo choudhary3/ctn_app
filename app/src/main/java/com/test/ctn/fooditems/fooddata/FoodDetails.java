@@ -1,14 +1,15 @@
 package com.test.ctn.fooditems.fooddata;
+
 import java.io.Serializable;
 
-public class FoodDetails implements Serializable{
+public class FoodDetails implements Serializable {
     private int price;
     private String foodName;
     private int foodImage;
     private int foodQuantity;
 
 
-    public FoodDetails(int mPrice, String mFoodName, int mFoodImage){
+    public FoodDetails(int mPrice, String mFoodName, int mFoodImage) {
         price = mPrice;
         foodName = mFoodName;
         foodImage = mFoodImage;
@@ -31,8 +32,7 @@ public class FoodDetails implements Serializable{
         return foodQuantity;
     }
 
-    public void setFoodQuantity(int i){
+    public void setFoodQuantity(int i) {
         foodQuantity = i;
     }
-
 }
