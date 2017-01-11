@@ -1,5 +1,6 @@
 package com.test.ctn;
 
+import android.content.Intent;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
@@ -18,39 +19,27 @@ public class MainScreen extends AppCompatActivity {
 
     // double tapping feature
     boolean backPressed ;
-    // for double tap
-
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        System.out.println("In on create fn");
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_screen);
 
-        /*
-            setting data on creation of app
-         */
-
         StorageClass foodStorage = new StorageClass();
-        foodStorage.setData();
-        /*
-            setting data on creation of app
-         */
+        Intent intent = getIntent();
+        if (intent != null && intent.getExtras().getString("From").equals("SelectedFood")){
+            View view = findViewById(R.id.plate);
+            plateButton(view);
+        }
+        else {
+            /*
+        setting data on creation of app
+        */  foodStorage.setCatalogData();      //setting the data
 
-        ItemsFragment itemsFragment = new ItemsFragment();
-        FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
-
-        ft.replace(R.id.container, itemsFragment,"Main_Menu");
-        System.out.println("added fragment");
-
-        getSupportFragmentManager().popBackStack();
-
-        ft.commit();
-        Log.i("fragchecking ",Integer.toString(getFragmentManager().getBackStackEntryCount()));
-
-       backPressed = false;
-
+            View view = findViewById(R.id.home);
+            homeButton(view);
+        }
+        backPressed = false;
     }
 
 
@@ -84,10 +73,7 @@ public class MainScreen extends AppCompatActivity {
             Log.i("fragchecking ",Integer.toString(getFragmentManager().getBackStackEntryCount()));
 
         }
-
-       // super.onBackPressed();
     }
-
 
     /*
     when home button is pressed below method executes ...
@@ -97,28 +83,23 @@ public class MainScreen extends AppCompatActivity {
         backPressed = false;
         Fragment checking = getSupportFragmentManager().findFragmentByTag("Main_Menu");
         if (checking==null || !checking.isVisible()){
-            Toast.makeText(this,"Menu Pressed",Toast.LENGTH_SHORT).show();
 
-
+            //Toast.makeText(this,"Menu Pressed",Toast.LENGTH_SHORT).show();
             ItemsFragment itemsFragment = new ItemsFragment();
             FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
             ft.replace(R.id.container, itemsFragment,"Main_Menu");
-
-
+            ft.commit();
             /*
-
             checking the pop buttomns
             */
 
             //ft.addToBackStack("Main_Menu");
 
             //getSupportFragmentManager().popBackStack();
-            ft.commit();
+
             Log.i("fragchecking ",Integer.toString(getFragmentManager().getBackStackEntryCount()));
         }
     }
-
-
     /*
     when PLATE button is pressed below method executes ...
      */
@@ -127,8 +108,7 @@ public class MainScreen extends AppCompatActivity {
         Fragment checking = getSupportFragmentManager().findFragmentByTag("PLATE_VIEW");
         if (checking==null || !checking.isVisible()) {
 
-            Toast.makeText(this,"Plate Pressed",Toast.LENGTH_SHORT).show();
-
+            //Toast.makeText(this,"Plate Pressed",Toast.LENGTH_SHORT).show();
             FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
             PlateFragment plateFragment = new PlateFragment();
             ft.replace(R.id.container, plateFragment, "PLATE_VIEW");
@@ -141,15 +121,12 @@ public class MainScreen extends AppCompatActivity {
         }
     }
 
-
-
     public void profileButton(View view) {
         backPressed = false;
         Fragment checking = getSupportFragmentManager().findFragmentByTag("PROFILE_VIEW");
         if (checking==null || !checking.isVisible()) {
 
-            Toast.makeText(this,"Profile Pressed",Toast.LENGTH_SHORT).show();
-
+            //Toast.makeText(this,"Profile Pressed",Toast.LENGTH_SHORT).show();
             ProfileFragment profileFragment = new ProfileFragment();
             FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
             ft.replace(R.id.container, profileFragment, "PROFILE_VIEW");
@@ -162,5 +139,4 @@ public class MainScreen extends AppCompatActivity {
             Log.i("fragchecking ", Integer.toString(getFragmentManager().getBackStackEntryCount()));
         }
     }
-
 }

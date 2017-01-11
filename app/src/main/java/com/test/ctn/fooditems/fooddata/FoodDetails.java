@@ -30,11 +30,9 @@ public class FoodDetails implements Serializable{
     public int getFoodQuantity() {
         return foodQuantity;
     }
-    public void incFoodQuantity(){
-        foodQuantity++;
-    }
-    public void decFoodQuantity(){
-        foodQuantity--;
+
+    public void setFoodQuantity(int i){
+        foodQuantity = i;
     }
 
 }
