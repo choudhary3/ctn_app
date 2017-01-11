@@ -27,7 +27,8 @@ public class Login extends AppCompatActivity {
     public static final String MESSAGE = "MESSAGE";
     private static final String LOGIN_URL = "http://pcpradeep22.16mb.com/login.php";
 
-    String usernameS;
+    public static String nameS;
+    public static String usernameS;
     String passwordS;
 
     private Intent intentLogin;
@@ -120,9 +121,10 @@ public class Login extends AppCompatActivity {
             protected void onPostExecute(String s) {
                 super.onPostExecute(s);
                 loading.dismiss();
-                if (s.startsWith("Welcome")) {
+                if (s.startsWith("W")) {
                     intentLogin.putExtra("From", "LoginPage");
                     Toast.makeText(getBaseContext(), "Success!", Toast.LENGTH_SHORT).show();
+                    nameS = s.substring(1,2).toUpperCase() + s.substring(2);
                     startActivity(intentLogin);
                 } else {
                     Toast.makeText(getBaseContext(), s, Toast.LENGTH_SHORT).show();
