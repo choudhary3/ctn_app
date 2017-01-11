@@ -36,6 +36,7 @@ This App Currently Based To Work For Only One Canteen Service.
 * Expanding To Multi Canteen Service By Making An Owner Option For The Canteen And Owner Can Get The Notification Directly On his/her Mobile And On Server Database
 * Adding Online Payment Option Like Paying Through The Paytm App 
 * Students (Customer) Can Only Order From That Canteen Service Which is Within a Specified Area This Can Be Achieved By The Bing Maps Api  
+
 ## Built With
 
 * [Android Studio](https://developer.android.com/studio/index.html) - The Software used
