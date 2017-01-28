@@ -1,6 +1,8 @@
 package com.test.ctn.profile;
 
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -20,8 +22,9 @@ public class ProfileFragment extends Fragment {
         TextView name = (TextView) view.findViewById(R.id.name);
         TextView username = (TextView) view.findViewById(R.id.username);
 
-        name.setText(Login.nameS);
-        username.setText(Login.usernameS);
+        SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(getContext());
+        name.setText(sp.getString(Login.NAME, "Noobie"));
+        username.setText(sp.getString(Login.USERNAME, "noobie123"));
 
         return view;
     }

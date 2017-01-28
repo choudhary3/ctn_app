@@ -16,6 +16,7 @@ public class Start extends AppCompatActivity {
         SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(getBaseContext());
         if (sp.getBoolean(Login.LOGIN_CHECK, false)) {
             Intent intent = new Intent(this, MainScreen.class);
+            intent.putExtra("From", "StartPage");
             startActivity(intent);
             finish();
         } else {

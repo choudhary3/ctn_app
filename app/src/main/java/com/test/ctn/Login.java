@@ -28,6 +28,7 @@ public class Login extends AppCompatActivity {
 
     public static final String LOGIN_CHECK = "LOGGED_IN";
     public static final String NAME = "NAME";
+    public static final String USERNAME = "USERNAME";
     private static final String LOGIN_URL = "http://pcpradeep22.16mb.com/login.php";
 
     public static String nameS;
@@ -131,7 +132,8 @@ public class Login extends AppCompatActivity {
                     SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(getBaseContext());
                     SharedPreferences.Editor editor = sp.edit();
                     editor.putBoolean(LOGIN_CHECK, true);
-                    editor.putString(NAME, s.substring(1, 2).toUpperCase() + s.substring(2));
+                    editor.putString(NAME, nameS);
+                    editor.putString(USERNAME, usernameS);
                     editor.commit();
                     startActivity(intentLogin);
                     finish();
