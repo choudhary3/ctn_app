@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="app_name">CTN</string>
+    <string name="app_name">Midnight Order</string>
     <string name="home_text">Home</string>
     <string name="plate_text">Plate</string>
     <string name="profile_text">Profile</string>
