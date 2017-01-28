@@ -57,7 +57,7 @@ public class Register extends AppCompatActivity {
                         if (isNetworkAvailable()) {
                             registerUser();
                         } else {
-                            Toast.makeText(getBaseContext(), "No internet Bitch!", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(getBaseContext(), "No internet!", Toast.LENGTH_SHORT).show();
                         }
                     }
                 }
@@ -120,6 +120,7 @@ public class Register extends AppCompatActivity {
                 if (s.equalsIgnoreCase("successfully registered!!")) {
                     Intent intent = new Intent(Register.this, Login.class);
                     startActivity(intent);
+                    finish();
                 }
             }
 

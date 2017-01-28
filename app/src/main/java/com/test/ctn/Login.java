@@ -3,9 +3,11 @@ package com.test.ctn;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.AsyncTask;
+import android.preference.PreferenceManager;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -24,7 +26,8 @@ public class Login extends AppCompatActivity {
     private EditText username;
     private EditText password;
 
-    public static final String MESSAGE = "MESSAGE";
+    public static final String LOGIN_CHECK = "LOGGED_IN";
+    public static final String NAME = "NAME";
     private static final String LOGIN_URL = "http://pcpradeep22.16mb.com/login.php";
 
     public static String nameS;
@@ -79,7 +82,7 @@ public class Login extends AppCompatActivity {
 
                             loginUser(usernameS, passwordS);
                         } else {
-                            Toast.makeText(getBaseContext(), "No internet Bitch!", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(getBaseContext(), "No internet!", Toast.LENGTH_SHORT).show();
                         }
                     }
                 }
@@ -125,7 +128,13 @@ public class Login extends AppCompatActivity {
                     intentLogin.putExtra("From", "LoginPage");
                     Toast.makeText(getBaseContext(), "Success!", Toast.LENGTH_SHORT).show();
                     nameS = s.substring(1,2).toUpperCase() + s.substring(2);
+                    SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(getBaseContext());
+                    SharedPreferences.Editor editor = sp.edit();
+                    editor.putBoolean(LOGIN_CHECK, true);
+                    editor.putString(NAME, s.substring(1, 2).toUpperCase() + s.substring(2));
+                    editor.commit();
                     startActivity(intentLogin);
+                    finish();
                 } else {
                     Toast.makeText(getBaseContext(), s, Toast.LENGTH_SHORT).show();
                 }

@@ -12,18 +12,18 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".MainScreen" />
-        <activity android:name=".Login">
+        <activity android:name=".Login"></activity>
+        <activity
+            android:name=".fooditems.solofoodUi.SelectedFood"
+            android:noHistory="true" />
+        <activity android:name=".Register" />
+        <activity android:name=".Start">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity
-            android:name=".fooditems.solofoodUi.SelectedFood"
-            android:noHistory="true" />
-        <activity android:name=".fooditems.solofoodUi.practice" />
-        <activity android:name=".Register"></activity>
     </application>
 
 </manifest>
